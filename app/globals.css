@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  StadiumIQ AI — Design Tokens
+  Signature concept: "Floodlit Command Deck" — a night-operations control
+  room lit by a single pitch-emerald floodlight accent against deep
+  stadium-sky navy. Alerts read as warm flare-red, transport as beam-blue.
+  All colors are HSL triplets consumed via hsl(var(--token)) so nothing
+  in component code ever hardcodes a color.
+*/
+
+@layer base {
+  .dark {
+    --background: 220 14% 8%;
+    --foreground: 240 12% 90%;
+
+    --surface: 220 11% 12%;
+    --surface-elevated: 220 8% 17%;
+
+    --card: 220 11% 12%;
+    --card-foreground: 240 12% 90%;
+
+    --popover: 222 32% 12%;
+    --popover-foreground: 210 35% 95%;
+
+    --primary: 230 100% 86%;
+    --primary-foreground: 222 100% 25%;
+
+    --secondary: 220 8% 17%;
+    --secondary-foreground: 240 12% 90%;
+
+    --muted: 220 8% 17%;
+    --muted-foreground: 232 15% 77%;
+
+    --accent: 267 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 8 90% 63%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 158 100% 44%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 95% 58%;
+    --warning-foreground: 24 45% 12%;
+
+    --info: 230 100% 86%;
+    --info-foreground: 222 46% 7%;
+
+    --border: 232 15% 29%;
+    --input: 232 15% 29%;
+    --ring: 230 100% 86%;
+
+    --radius: 1rem;
+  }
+
+  .light {
+    --background: 210 33% 98%;
+    --foreground: 222 40% 9%;
+
+    --surface: 0 0% 100%;
+    --surface-elevated: 210 30% 100%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 40% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 40% 9%;
+
+    --primary: 166 85% 33%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 25% 94%;
+    --secondary-foreground: 222 40% 9%;
+
+    --muted: 210 25% 94%;
+    --muted-foreground: 220 12% 40%;
+
+    --accent: 213 85% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 8 78% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 60% 34%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 90% 46%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 213 85% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 166 85% 33%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: dark;
+  }
+  html.light {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+    min-width: 320px;
+  }
+  ::selection {
+    @apply bg-primary/25 text-foreground;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+  button, a, input {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 999px;
+  }
+  .bg-grid {
+    background-image: linear-gradient(hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--surface-elevated)) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 1000px 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Fan companion light mode: its map-first UI uses a dark palette by default. */
+.fan-light .text-slate-100,
+.fan-light .text-white { color: #13213c !important; }
+.fan-light .text-slate-300,
+.fan-light .text-slate-400 { color: #52627b !important; }
+.fan-light .bg-white\/\[\.055\],
+.fan-light .bg-white\/\[\.045\],
+.fan-light .bg-white\/\[\.04\],
+.fan-light .bg-white\/5 { background-color: rgba(255, 255, 255, .8) !important; }
+.fan-light .border-white\/10 { border-color: rgba(19, 33, 60, .13) !important; }
+.fan-light .bg-\[\#102a43\] { background-color: #dceafd !important; }
+
+/* Landing/login reference theme, including light-mode adaptations. */
+html.light .bg-\[\#0c0e12\] { background-color: #f5f7fa !important; }
+html.light .bg-\[\#111318\],
+html.light .bg-\[\#16181d\],
+html.light .bg-\[\#1a1c20\] { background-color: #ffffff !important; }
+html.light .text-\[\#e2e2e8\] { color: #171923 !important; }
+html.light .text-\[\#c3c5d9\],
+html.light .text-\[\#8d90a2\] { color: #586174 !important; }
+html.light .border-white\/10,
+html.light .border-white\/15 { border-color: rgba(31, 41, 55, .14) !important; }
+html.light .bg-white\/5,
+html.light .bg-white\/\[\.04\] { background-color: rgba(17, 24, 39, .04) !important; }
+
+/* Daylight composition for the Stitch-inspired landing screen. */
+html.light main.bg-\[\#0c0e12\] {
+  background: #f5f7fb !important;
+  color: #171923;
+}
+html.light main.bg-\[\#0c0e12\] > header {
+  background: rgba(255, 255, 255, .88) !important;
+  border-color: rgba(31, 41, 55, .1) !important;
+}
+html.light main.bg-\[\#0c0e12\] > section#overview {
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(0, 226, 147, .13), transparent 26%),
+    radial-gradient(ellipse at 24% 28%, rgba(112, 0, 255, .1), transparent 34%),
+    linear-gradient(180deg, #ffffff 0%, #f0f4ff 100%) !important;
+}
+html.light main.bg-\[\#0c0e12\] > section#overview > div:first-child,
+html.light main.bg-\[\#0c0e12\] > section#overview > div:nth-child(2) {
+  opacity: .35;
+}
+html.light main.bg-\[\#0c0e12\] > section#technology {
+  background: #edf1f7 !important;
+  border-color: rgba(31, 41, 55, .09) !important;
+}
+html.light main.bg-\[\#0c0e12\] .bg-\[\#16181d\]\/85,
+html.light main.bg-\[\#0c0e12\] .bg-\[\#1a1c20\] {
+  background: rgba(255, 255, 255, .9) !important;
+  box-shadow: 0 12px 30px rgba(25, 45, 80, .06);
+}
+html.light main.bg-\[\#0c0e12\] .text-\[\#e2e2e8\],
+html.light main.bg-\[\#0c0e12\] .text-white {
+  color: #171923;
+}
+html.light main.bg-\[\#0c0e12\] .bg-gradient-to-r.from-violet-600,
+html.light main.bg-\[\#0c0e12\] .bg-gradient-to-r.from-emerald-500 {
+  color: white;
+}
