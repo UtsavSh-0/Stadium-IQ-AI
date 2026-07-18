@@ -22,19 +22,19 @@ const crowdBadgeVariant: Record<NavigationPOI["crowdLevel"], string> = {
   high: "bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30",
 };
 
-export interface NavigationCardProps {
-  poi: NavigationPOI;
+export interface NavigationCardProps<T extends NavigationPOI = NavigationPOI> {
+  poi: T;
   icon: React.ReactNode;
   /** Small line of metadata specific to the POI category, e.g. "Row F · Seat 12" */
   meta: string;
   /** Optional secondary line, e.g. wait time or availability */
   secondaryMeta?: string;
   isActive?: boolean;
-  onSelect?: (poi: NavigationPOI) => void;
-  onNavigate?: (poi: NavigationPOI) => void;
+  onSelect?: (poi: T) => void;
+  onNavigate?: (poi: T) => void;
 }
 
-export function NavigationCard({
+export function NavigationCard<T extends NavigationPOI>({
   poi,
   icon,
   meta,
@@ -42,7 +42,7 @@ export function NavigationCard({
   isActive = false,
   onSelect,
   onNavigate,
-}: NavigationCardProps) {
+}: NavigationCardProps<T>) {
   return (
     <motion.div
       layout
