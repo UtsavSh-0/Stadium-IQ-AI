@@ -1,10 +1,13 @@
 // services/ai-service.ts
-// Mock service layer for the AI module. No backend/network calls are made.
-// This is the seam to swap in a real API (OpenAI/LangChain) later without
-// touching any component code — components only depend on this module's shape.
+// Client-side MOCK service for the AI assistant UI. No network calls.
+//
+// The real path is already scaffolded server-side and will replace this:
+//   components → POST /api/ai/chat → services/ai/chat-service.ts → lib/ai/
+// When Gemini is integrated, swap `sendMessageMock` for a fetch to
+// /api/ai/chat here (the components only depend on this module's shape).
 
 import type { AIMessage } from "@/types/ai";
-import { getMockAssistantReply } from "@/lib/ai/mock-data";
+import { getMockAssistantReply } from "@/lib/mock/ai-mock-data";
 
 export interface SendMessageResult {
   message: AIMessage;

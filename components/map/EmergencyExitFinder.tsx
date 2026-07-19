@@ -13,7 +13,7 @@ import { DoorClosed, ShieldAlert } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { NavigationCard } from "@/components/map/NavigationCard";
-import { EXITS } from "@/lib/navigation-mock-data";
+import { EXITS } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 import type { EmergencyExitPOI } from "@/types/navigation";
 

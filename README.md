@@ -208,15 +208,101 @@ StadiumIQ AI transforms traditional stadium management into an AI-assisted exper
 
 # ⚡ Getting Started
 
+## 1. Clone and install
+
 ```bash
 git clone https://github.com/your-username/stadiumiq-ai.git
-
 cd stadiumiq-ai
-
 npm install
+```
 
+## 2. Configure environment variables
+
+```bash
+cp .env.example .env.local
+```
+
+Fill in the values from your Supabase dashboard (Project Settings → API).
+`config/env.ts` validates everything at startup and fails fast with a clear
+message if something is missing.
+
+| Variable | Scope | Required | Purpose |
+|---|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Public (browser) | ✅ | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public (browser) | ✅ | Anon key — safe to expose, all access goes through RLS |
+| `SUPABASE_SERVICE_ROLE_KEY` | **Server-only secret** | Optional | Bypasses RLS; only used by trusted server code (`lib/supabase/admin.ts`) |
+| `SUPABASE_DB_URL` | **Server-only secret** | Optional | Direct Postgres URL for migration tooling only |
+| `GEMINI_API_KEY` | **Server-only secret** | Not yet | Reserved for the Gemini integration; assistant API returns 503 until set |
+| `AI_MODEL` | Server | Optional | Gemini model id (default `gemini-2.0-flash`) |
+| `AI_MAX_OUTPUT_TOKENS` | Server | Optional | Cost ceiling per AI response (default `1024`) |
+| `APP_URL` | Server | Optional | Base URL for absolute links/callbacks |
+| `LOG_LEVEL` | Server | Optional | `debug`/`info`/`warn`/`error` |
+
+**Rule of thumb:** anything prefixed `NEXT_PUBLIC_` ends up in the browser
+bundle. Secrets must never carry that prefix. Server secrets are validated in
+`config/env.ts`, which is `server-only` — importing it from a client component
+fails the build instead of leaking keys.
+
+## 3. Set up the database
+
+Apply the migrations in `supabase/migrations/` (see the README there):
+
+```bash
+supabase link --project-ref <your-project-ref>
+supabase db push
+```
+
+This creates all tables, indexes, Row Level Security policies, and the
+signup trigger that provisions a profile (role `fan`) for each new user.
+
+## 4. Run
+
+```bash
 npm run dev
 ```
+
+---
+
+# 🔐 Security Architecture
+
+- **Auth**: Supabase Auth (email/password + Google OAuth), session cookies
+  refreshed by `middleware.ts` on every request.
+- **Authorization**: three layers —
+  1. `middleware.ts` redirects unauthenticated users and blocks fans from
+     staff routes (`/dashboard`, `/admin`, `/operations`) — UX layer.
+  2. `lib/auth/guards.ts` (`requireUser` / `requireRole`) for Server
+     Components and API routes — request layer.
+  3. Postgres Row Level Security on every table — data layer. Even a bug in
+     the layers above cannot read rows RLS forbids.
+- **Roles**: `admin`, `operator`, `volunteer`, `fan`. Role changes are
+  admin-only, enforced in the database by a trigger
+  (`0010_prevent_role_escalation.sql`).
+- **API**: every route is wrapped in `createApiHandler` (uniform error
+  envelope, no stack traces to clients) and validates input with Zod
+  (`lib/validation/`).
+- **Headers**: `X-Frame-Options`, `nosniff`, HSTS, `Referrer-Policy`, and
+  `Permissions-Policy` are set globally in `next.config.js`.
+
+# 🤖 AI Integration Architecture (Gemini — not yet wired)
+
+```
+Browser (components/ai/*)          — no key, no SDK, cookie auth only
+   │  POST /api/ai/chat
+   ▼
+app/api/ai/chat/route.ts           — auth (requireUser) + Zod validation
+   ▼
+services/ai/chat-service.ts        — prompt assembly, history caps, logging
+   ▼
+lib/ai/provider.ts                 — AIProvider interface; Gemini adapter goes here
+   ▼
+Google Gemini API                  — key read only from server env
+```
+
+Supporting modules: `prompts/system-prompts.ts` (personas + safety rules),
+`types/ai-server.ts` (wire contracts), `lib/validation/ai.ts` (request
+schemas). Until the adapter is implemented the endpoint returns
+`503 AI_NOT_CONFIGURED` and the UI uses the local mock
+(`services/ai-service.ts`).
 
 ---
 

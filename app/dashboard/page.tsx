@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Activity, ArrowUpRight, Bot, Bus, CircleAlert, Gauge, Map, ShieldCheck, Users } from "lucide-react";
 import { PageLayout } from "@/components/layout/page-layout";
-import { StatCard } from "@/components/dashboard/stat-card";
+import { StatCard } from "@/components/dashboard/StatCard";
 import { Button } from "@/components/ui/button";
 
 const recommendations = [

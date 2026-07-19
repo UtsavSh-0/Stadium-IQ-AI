@@ -12,7 +12,7 @@ import { Armchair, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { NavigationCard } from "@/components/map/NavigationCard";
-import { SEATS } from "@/lib/navigation-mock-data";
+import { SEATS } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 import type { SeatPOI } from "@/types/navigation";
 

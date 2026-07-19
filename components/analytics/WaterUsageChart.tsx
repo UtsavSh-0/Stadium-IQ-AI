@@ -3,6 +3,7 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Droplets } from "lucide-react";
+import { chartGridProps, chartLegendStyle, chartTooltipContentStyle, xAxisProps, yAxisProps } from "@/lib/chart-theme";
 import type { WaterUsageDataPoint } from "@/types/analytics";
 
 export interface WaterUsageChartProps {
@@ -25,28 +26,11 @@ export function WaterUsageChart({ data }: WaterUsageChartProps) {
         <div className="h-[260px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 8, right: 16, left: -8, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis
-                dataKey="date"
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
-                axisLine={{ stroke: "hsl(var(--border))" }}
-                tickLine={false}
-              />
-              <YAxis
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
-                axisLine={{ stroke: "hsl(var(--border))" }}
-                tickLine={false}
-                width={48}
-              />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "hsl(var(--popover))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "var(--radius)",
-                  color: "hsl(var(--popover-foreground))",
-                }}
-              />
-              <Legend wrapperStyle={{ fontSize: 12, color: "hsl(var(--muted-foreground))" }} />
+              <CartesianGrid {...chartGridProps} />
+              <XAxis {...xAxisProps("date")} />
+              <YAxis {...yAxisProps(48)} />
+              <Tooltip contentStyle={chartTooltipContentStyle} />
+              <Legend wrapperStyle={chartLegendStyle} />
               <Bar dataKey="consumptionKl" name="Consumption (kL)" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
               <Bar dataKey="recycledKl" name="Recycled (kL)" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
             </BarChart>

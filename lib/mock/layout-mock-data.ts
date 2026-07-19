@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import type {
   AppNotification,
-  AppUser,
   NavGroup,
   SearchResultItem,
 } from "@/types/layout";
@@ -19,17 +18,16 @@ import type {
 /**
  * MOCK DATA — foundation module only.
  * Replace with real API/services wiring once backend endpoints exist.
+ *
+ * NOTE: the previous `mockCurrentUser` (fake auth identity) has been removed.
+ * The signed-in user now comes from Supabase Auth via `useAuth()`
+ * (components/providers/auth-provider.tsx). The data below is presentation
+ * only (navigation structure, sample notifications, search index) and is not
+ * authentication state.
+ *
  * Other developers: extend `navGroups` items for your own module's
  * sub-routes, do not duplicate the group itself.
  */
-
-export const mockCurrentUser: AppUser = {
-  id: "usr_001",
-  name: "Amara Ellison",
-  email: "amara.ellison@stadiumiq.ai",
-  role: "operations-manager",
-  stadium: "MetLife Stadium — East Rutherford",
-};
 
 export const navGroups: NavGroup[] = [
   {

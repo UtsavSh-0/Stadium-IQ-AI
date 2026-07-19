@@ -1,4 +1,4 @@
-// lib/ai/mock-data.ts
+// lib/mock/ai-mock-data.ts
 // Mock data source for the AI module. Swap for real API/service calls later —
 // see services/ai-service.ts for the seam where that should happen.
 

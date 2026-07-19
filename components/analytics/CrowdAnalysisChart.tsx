@@ -4,6 +4,7 @@ import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { chartAxisLine, chartAxisTick, chartGridProps, chartTooltipContentStyle } from "@/lib/chart-theme";
 import type { CrowdZoneDensity } from "@/types/analytics";
 
 export interface CrowdAnalysisChartProps {
@@ -40,12 +41,12 @@ export function CrowdAnalysisChart({ zones }: CrowdAnalysisChartProps) {
         <div className="h-[260px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={zones} layout="vertical" margin={{ top: 0, right: 24, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" horizontal={false} />
+              <CartesianGrid {...chartGridProps} horizontal={false} />
               <XAxis
                 type="number"
                 domain={[0, 100]}
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
-                axisLine={{ stroke: "hsl(var(--border))" }}
+                tick={chartAxisTick}
+                axisLine={chartAxisLine}
                 tickLine={false}
                 unit="%"
               />
@@ -54,18 +55,10 @@ export function CrowdAnalysisChart({ zones }: CrowdAnalysisChartProps) {
                 dataKey="zone"
                 width={130}
                 tick={{ fill: "hsl(var(--foreground))", fontSize: 12 }}
-                axisLine={{ stroke: "hsl(var(--border))" }}
+                axisLine={chartAxisLine}
                 tickLine={false}
               />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "hsl(var(--popover))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "var(--radius)",
-                  color: "hsl(var(--popover-foreground))",
-                }}
-                formatter={(value: number) => [`${value}%`, "Density"]}
-              />
+              <Tooltip contentStyle={chartTooltipContentStyle} formatter={(value: number) => [`${value}%`, "Density"]} />
               <Bar dataKey="densityPercent" radius={[0, 6, 6, 0]} barSize={18}>
                 {zones.map((z) => (
                   <Cell key={z.zone} fill={STATUS_COLOR_VAR[z.status]} />

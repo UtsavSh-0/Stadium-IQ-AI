@@ -13,7 +13,7 @@ import { CircleParking } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Progress } from "@/components/ui/progress";
 import { NavigationCard } from "@/components/map/NavigationCard";
-import { PARKING } from "@/lib/navigation-mock-data";
+import { PARKING } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 import type { ParkingPOI } from "@/types/navigation";
 

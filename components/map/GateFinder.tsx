@@ -12,7 +12,7 @@ import { DoorOpen, TriangleAlert } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { NavigationCard } from "@/components/map/NavigationCard";
-import { GATES } from "@/lib/navigation-mock-data";
+import { GATES } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 import type { GatePOI } from "@/types/navigation";
 import { cn } from "@/lib/utils";

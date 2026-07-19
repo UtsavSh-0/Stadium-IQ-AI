@@ -4,7 +4,7 @@
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
 import type { SuggestedQuestion } from "@/types/ai";
-import { SUGGESTED_QUESTIONS } from "@/lib/ai/mock-data";
+import { SUGGESTED_QUESTIONS } from "@/lib/mock/ai-mock-data";
 
 export interface SuggestedQuestionsProps {
   questions?: SuggestedQuestion[];

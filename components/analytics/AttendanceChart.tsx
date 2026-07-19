@@ -12,6 +12,7 @@ import {
   Legend,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { chartGridProps, chartLegendStyle, chartTooltipContentStyle, xAxisProps, yAxisProps } from "@/lib/chart-theme";
 import type { AttendanceDataPoint } from "@/types/analytics";
 
 export interface AttendanceChartProps {
@@ -34,29 +35,14 @@ export function AttendanceChart({ data }: AttendanceChartProps) {
         <div className="h-[320px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={data} margin={{ top: 8, right: 16, left: -8, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis
-                dataKey="date"
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
-                axisLine={{ stroke: "hsl(var(--border))" }}
-                tickLine={false}
-              />
-              <YAxis
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
-                axisLine={{ stroke: "hsl(var(--border))" }}
-                tickLine={false}
-                width={56}
-              />
+              <CartesianGrid {...chartGridProps} />
+              <XAxis {...xAxisProps("date")} />
+              <YAxis {...yAxisProps(56)} />
               <Tooltip
-                contentStyle={{
-                  backgroundColor: "hsl(var(--popover))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "var(--radius)",
-                  color: "hsl(var(--popover-foreground))",
-                }}
+                contentStyle={chartTooltipContentStyle}
                 labelFormatter={(_, payload) => payload?.[0]?.payload?.match ?? ""}
               />
-              <Legend wrapperStyle={{ fontSize: 12, color: "hsl(var(--muted-foreground))" }} />
+              <Legend wrapperStyle={chartLegendStyle} />
               <defs>
                 <linearGradient id="attendanceFill" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="hsl(var(--chart-1))" stopOpacity={0.35} />

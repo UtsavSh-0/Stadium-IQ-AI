@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { QueryProvider } from "@/components/layout/query-provider";
+import { AuthProvider } from "@/components/providers/auth-provider";
 import { GlobalThemeControl } from "@/components/layout/global-theme-control";
 import "./globals.css";
 
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className="font-sans">
         <ThemeProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </QueryProvider>
           <GlobalThemeControl />
         </ThemeProvider>
       </body>

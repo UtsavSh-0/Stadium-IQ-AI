@@ -23,7 +23,7 @@ import { MapControls } from "@/components/map/MapControls";
 import { MapLegend } from "@/components/map/MapLegend";
 import { HeatmapOverlay } from "@/components/map/HeatmapOverlay";
 import { RouteAnimation } from "@/components/map/RouteAnimation";
-import { ALL_POIS, VIEWBOX, buildMockRoute } from "@/lib/navigation-mock-data";
+import { ALL_POIS, VIEWBOX, buildMockRoute } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 import type { NavigationPOI, POICategory } from "@/types/navigation";
 import { cn } from "@/lib/utils";

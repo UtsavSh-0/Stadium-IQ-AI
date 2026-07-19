@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { Compass } from "lucide-react";
 import { StadiumSVGMap } from "@/components/map/StadiumSVGMap";
 import { NavigationSearchPanel } from "@/components/map/NavigationSearchPanel";
-import { FLOORS } from "@/lib/navigation-mock-data";
+import { FLOORS } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 
 export default function NavigationPage() {

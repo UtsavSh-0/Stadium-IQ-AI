@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Radio, Pause, Play, RefreshCcw } from "lucide-react";
-import { useCrowdSimulation } from "@/hooks/useCrowdSimulation";
+import { useCrowdSimulation } from "@/hooks/use-crowd-simulation";
 import { CrowdStatistics } from "@/components/dashboard/crowd/CrowdStatistics";
 import { CrowdHeatmapCard } from "@/components/dashboard/crowd/CrowdHeatmapCard";
 import { CongestionChart } from "@/components/dashboard/crowd/CongestionChart";

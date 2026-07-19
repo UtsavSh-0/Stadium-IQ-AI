@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { mockSearchIndex } from "@/services/mockLayoutData";
+import { mockSearchIndex } from "@/lib/mock/layout-mock-data";
 import { cn } from "@/lib/utils";
 
 export function SearchBar() {

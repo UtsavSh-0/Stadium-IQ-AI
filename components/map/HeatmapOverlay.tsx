@@ -11,7 +11,7 @@
  */
 
 import { motion } from "framer-motion";
-import { HEATMAP_ZONES } from "@/lib/navigation-mock-data";
+import { HEATMAP_ZONES } from "@/lib/mock/navigation-mock-data";
 import type { FloorId } from "@/types/navigation";
 
 export interface HeatmapOverlayProps {

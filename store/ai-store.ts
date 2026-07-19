@@ -1,7 +1,7 @@
 // store/ai-store.ts
 import { create } from "zustand";
 import type { AIChatState, AIMessage, SupportedLanguageCode } from "@/types/ai";
-import { MOCK_CONVERSATIONS, MOCK_MESSAGES } from "@/lib/ai/mock-data";
+import { MOCK_CONVERSATIONS, MOCK_MESSAGES } from "@/lib/mock/ai-mock-data";
 
 interface AIStoreActions {
   setActiveConversation: (id: string | null) => void;

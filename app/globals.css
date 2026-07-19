@@ -184,53 +184,30 @@
 .fan-light .bg-white\/5 { background-color: rgba(255, 255, 255, .8) !important; }
 .fan-light .border-white\/10 { border-color: rgba(19, 33, 60, .13) !important; }
 .fan-light .bg-\[\#102a43\] { background-color: #dceafd !important; }
+.fan-light .bg-\[\#16181d\] { background-color: #ffffff !important; }
+.fan-light .ring-\[\#102a43\] { --tw-ring-color: #dceafd !important; }
 
-/* Landing/login reference theme, including light-mode adaptations. */
-html.light .bg-\[\#0c0e12\] { background-color: #f5f7fa !important; }
-html.light .bg-\[\#111318\],
-html.light .bg-\[\#16181d\],
-html.light .bg-\[\#1a1c20\] { background-color: #ffffff !important; }
-html.light .text-\[\#e2e2e8\] { color: #171923 !important; }
-html.light .text-\[\#c3c5d9\],
-html.light .text-\[\#8d90a2\] { color: #586174 !important; }
-html.light .border-white\/10,
-html.light .border-white\/15 { border-color: rgba(31, 41, 55, .14) !important; }
-html.light .bg-white\/5,
-html.light .bg-white\/\[\.04\] { background-color: rgba(17, 24, 39, .04) !important; }
-
-/* Daylight composition for the Stitch-inspired landing screen. */
-html.light main.bg-\[\#0c0e12\] {
+/*
+  Login/signup light theme. The auth screen is authored dark, so when the
+  global theme is light we remap its palette. Every rule is scoped to
+  .auth-screen — never target bare utility classes at html.light level,
+  because the fan/visitor section paints its own dark UI with the same
+  utilities regardless of the global theme.
+*/
+html.light .auth-screen.bg-\[\#0c0e12\] {
   background: #f5f7fb !important;
   color: #171923;
 }
-html.light main.bg-\[\#0c0e12\] > header {
-  background: rgba(255, 255, 255, .88) !important;
-  border-color: rgba(31, 41, 55, .1) !important;
-}
-html.light main.bg-\[\#0c0e12\] > section#overview {
-  background:
-    radial-gradient(ellipse at 50% 38%, rgba(0, 226, 147, .13), transparent 26%),
-    radial-gradient(ellipse at 24% 28%, rgba(112, 0, 255, .1), transparent 34%),
-    linear-gradient(180deg, #ffffff 0%, #f0f4ff 100%) !important;
-}
-html.light main.bg-\[\#0c0e12\] > section#overview > div:first-child,
-html.light main.bg-\[\#0c0e12\] > section#overview > div:nth-child(2) {
-  opacity: .35;
-}
-html.light main.bg-\[\#0c0e12\] > section#technology {
-  background: #edf1f7 !important;
-  border-color: rgba(31, 41, 55, .09) !important;
-}
-html.light main.bg-\[\#0c0e12\] .bg-\[\#16181d\]\/85,
-html.light main.bg-\[\#0c0e12\] .bg-\[\#1a1c20\] {
-  background: rgba(255, 255, 255, .9) !important;
-  box-shadow: 0 12px 30px rgba(25, 45, 80, .06);
-}
-html.light main.bg-\[\#0c0e12\] .text-\[\#e2e2e8\],
-html.light main.bg-\[\#0c0e12\] .text-white {
-  color: #171923;
-}
-html.light main.bg-\[\#0c0e12\] .bg-gradient-to-r.from-violet-600,
-html.light main.bg-\[\#0c0e12\] .bg-gradient-to-r.from-emerald-500 {
-  color: white;
-}
+html.light .auth-screen .bg-\[\#111318\],
+html.light .auth-screen .bg-\[\#16181d\],
+html.light .auth-screen .bg-\[\#1a1c20\] { background-color: #ffffff !important; }
+html.light .auth-screen .text-\[\#e2e2e8\],
+html.light .auth-screen .text-white { color: #171923 !important; }
+html.light .auth-screen .text-\[\#c3c5d9\],
+html.light .auth-screen .text-\[\#8d90a2\] { color: #586174 !important; }
+html.light .auth-screen .text-\[\#b7c4ff\] { color: #364cc7 !important; }
+html.light .auth-screen .border-white\/10,
+html.light .auth-screen .border-white\/15 { border-color: rgba(31, 41, 55, .14) !important; }
+html.light .auth-screen .bg-white\/5,
+html.light .auth-screen .bg-white\/\[\.04\] { background-color: rgba(17, 24, 39, .04) !important; }
+html.light .auth-screen .bg-gradient-to-r { color: white; }

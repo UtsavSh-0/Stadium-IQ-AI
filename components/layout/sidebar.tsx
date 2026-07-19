@@ -5,8 +5,8 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ChevronsLeft, Radio, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { navGroups } from "@/services/mockLayoutData";
-import { useUIStore } from "@/store/useUIStore";
+import { navGroups } from "@/lib/mock/layout-mock-data";
+import { useUIStore } from "@/store/ui-store";
 import { Badge } from "@/components/ui/badge";
 
 function SidebarContent({ collapsed }: { collapsed: boolean }) {

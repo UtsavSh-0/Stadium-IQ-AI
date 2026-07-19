@@ -6,7 +6,7 @@ import { SearchBar } from "@/components/layout/search-bar";
 import { NotificationBell } from "@/components/layout/notification-bell";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { UserProfileDropdown } from "@/components/layout/user-profile-dropdown";
-import { useUIStore } from "@/store/useUIStore";
+import { useUIStore } from "@/store/ui-store";
 
 export function Navbar() {
   const setMobileSidebarOpen = useUIStore((s) => s.setMobileSidebarOpen);

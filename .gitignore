@@ -1,5 +1,14 @@
 node_modules/
 .next/
+out/
+
+# Environment files — every variant. Only .env.example is committed.
 .env
-.env.local
+.env.*
+!.env.example
+
+# Logs and local artifacts
 *.log
+*.tsbuildinfo
+.DS_Store
+.vercel

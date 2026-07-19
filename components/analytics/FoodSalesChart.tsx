@@ -2,6 +2,7 @@
 
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { chartTooltipContentStyle } from "@/lib/chart-theme";
 import type { FoodSalesCategory } from "@/types/analytics";
 
 export interface FoodSalesChartProps {
@@ -44,12 +45,7 @@ export function FoodSalesChart({ data }: FoodSalesChartProps) {
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{
-                    backgroundColor: "hsl(var(--popover))",
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "var(--radius)",
-                    color: "hsl(var(--popover-foreground))",
-                  }}
+                  contentStyle={chartTooltipContentStyle}
                   formatter={(value: number) => currencyFormatter.format(value)}
                 />
               </PieChart>

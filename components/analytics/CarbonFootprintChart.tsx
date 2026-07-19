@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Leaf } from "lucide-react";
+import { chartGridProps, chartLegendStyle, chartTooltipContentStyle, xAxisProps, yAxisProps } from "@/lib/chart-theme";
 import type { CarbonDataPoint } from "@/types/analytics";
 
 export interface CarbonFootprintChartProps {
@@ -45,28 +46,11 @@ export function CarbonFootprintChart({ data }: CarbonFootprintChartProps) {
                   <stop offset="95%" stopColor="hsl(var(--chart-2))" stopOpacity={0.03} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis
-                dataKey="date"
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
-                axisLine={{ stroke: "hsl(var(--border))" }}
-                tickLine={false}
-              />
-              <YAxis
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
-                axisLine={{ stroke: "hsl(var(--border))" }}
-                tickLine={false}
-                width={48}
-              />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "hsl(var(--popover))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "var(--radius)",
-                  color: "hsl(var(--popover-foreground))",
-                }}
-              />
-              <Legend wrapperStyle={{ fontSize: 12, color: "hsl(var(--muted-foreground))" }} />
+              <CartesianGrid {...chartGridProps} />
+              <XAxis {...xAxisProps("date")} />
+              <YAxis {...yAxisProps(48)} />
+              <Tooltip contentStyle={chartTooltipContentStyle} />
+              <Legend wrapperStyle={chartLegendStyle} />
               <Area
                 type="monotone"
                 dataKey="emissionsTons"

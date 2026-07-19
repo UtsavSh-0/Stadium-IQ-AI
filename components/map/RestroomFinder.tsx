@@ -12,7 +12,7 @@ import { useMemo } from "react";
 import { DoorOpen } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { NavigationCard } from "@/components/map/NavigationCard";
-import { RESTROOMS } from "@/lib/navigation-mock-data";
+import { RESTROOMS } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 import type { RestroomPOI } from "@/types/navigation";
 

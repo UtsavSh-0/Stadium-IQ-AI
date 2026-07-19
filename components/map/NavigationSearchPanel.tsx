@@ -25,7 +25,7 @@ import { EmergencyExitFinder } from "@/components/map/EmergencyExitFinder";
 import { ParkingFinder } from "@/components/map/ParkingFinder";
 import { GateFinder } from "@/components/map/GateFinder";
 import { RouteDetailsPanel } from "@/components/map/RouteDetailsPanel";
-import { buildMockRoute } from "@/lib/navigation-mock-data";
+import { buildMockRoute } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 import type { NavigationPOI } from "@/types/navigation";
 

@@ -10,6 +10,10 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
+  // Standard next-themes hydration guard: the theme is unknown on the server,
+  // so we render a neutral placeholder until mounted on the client. This is
+  // the documented pattern and intentionally sets state on mount.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   React.useEffect(() => setMounted(true), []);
 
   if (!mounted) {

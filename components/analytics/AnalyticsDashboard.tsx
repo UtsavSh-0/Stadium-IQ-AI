@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { logger } from "@/lib/logger/logger";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AnalyticsFilters } from "@/components/analytics/AnalyticsFilters";
 import { RevenueCards } from "@/components/analytics/RevenueCards";
@@ -47,7 +48,7 @@ export interface AnalyticsDashboardProps {
 export function AnalyticsDashboard({ className }: AnalyticsDashboardProps) {
   function handleExport(format: ExportFormat) {
     // Placeholder — replace with a real call into services/export-service.ts
-    console.info(`[analytics] export requested: ${format}`);
+    logger.info("analytics export requested", { format });
   }
 
   return (

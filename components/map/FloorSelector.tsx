@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import { Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { FLOORS } from "@/lib/navigation-mock-data";
+import { FLOORS } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 
 export function FloorSelector() {

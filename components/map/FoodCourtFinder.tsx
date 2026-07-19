@@ -12,7 +12,7 @@ import { useMemo } from "react";
 import { UtensilsCrossed } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { NavigationCard } from "@/components/map/NavigationCard";
-import { FOOD_COURTS } from "@/lib/navigation-mock-data";
+import { FOOD_COURTS } from "@/lib/mock/navigation-mock-data";
 import { useNavigationStore } from "@/store/navigation-store";
 import type { FoodCourtPOI } from "@/types/navigation";
 

@@ -11,7 +11,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { mockNotifications } from "@/services/mockLayoutData";
+import { mockNotifications } from "@/lib/mock/layout-mock-data";
 import { cn } from "@/lib/utils";
 import type { NotificationSeverity } from "@/types/layout";
 

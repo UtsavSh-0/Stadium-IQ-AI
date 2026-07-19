@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { SupportedLanguageCode } from "@/types/ai";
-import { SUPPORTED_LANGUAGES } from "@/lib/ai/mock-data";
+import { SUPPORTED_LANGUAGES } from "@/lib/mock/ai-mock-data";
 
 export interface LanguageSelectorProps {
   value: SupportedLanguageCode;
