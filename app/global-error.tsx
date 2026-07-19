@@ -69,6 +69,10 @@ export default function GlobalError({
             >
               Try again
             </button>
+            {/* Plain <a> on purpose: global-error renders when the app shell
+                (including the router) has crashed, so <Link> cannot be relied
+                on here — a full-page navigation is the safe recovery path. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a
               href="/"
               style={{
